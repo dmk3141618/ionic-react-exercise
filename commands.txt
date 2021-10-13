@@ -1,0 +1,21 @@
+
+
+npm install -g @ionic/cli
+
+(ionic start)
+ionic start photo-gallery tabs --type=react --capacitor
+ionic serve
+
+ionic capacitor add ios
+ionic capacitor open ios
+ionic capacitor copy ios
+
+live-reload
+ionic capacitor run ios -l --external
+
+
+npm install @capacitor/camera @capacitor/storage @capacitor/filesystem
+npm install @ionic/pwa-elements
+
+
+
