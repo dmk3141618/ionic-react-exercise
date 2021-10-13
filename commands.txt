@@ -18,4 +18,26 @@ npm install @capacitor/camera @capacitor/storage @capacitor/filesystem
 npm install @ionic/pwa-elements
 
 
+https://ionicframework.com/docs/react/your-first-app/3-saving-photos
+This example is not working now. (20211013) So will not add saving photos, loading photos.
 
+https://ionicframework.com/docs/react/your-first-app/5-adding-mobile
+Here how platform specific logic can be implemented. like isPlatform('hybrid')
+
+Deploying Mobile =>
+ionic cap add ios
+ionic cap add android
+ionic cap copy
+ionic cap sync
+ionic cap open ios
+https://ionicframework.com/docs/react/your-first-app/6-deploying-mobile#ios
+Need to add some permissions for cameras or ...
+ionic cap open android
+configure AndroidManifest.xml file like this.
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
+Live reload on mobile =>
+ionic cap run ios -l --external
+ionic cap run android -l --external
