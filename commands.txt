@@ -56,3 +56,7 @@ Caused by: org.gradle.api.resources.MissingResourceException: Could not read scr
 package-lock.json is always changed when using ~1.2.0 or ^1.2.0 like this.
 npm ci << This command only install from package-lock.json only. (https://stackoverflow.com/questions/45022048/why-does-npm-install-rewrite-package-lock-json)
 
+
+npm install --save-dev eslint-plugin-testing-library eslint-plugin-jest-dom
+"plugin:testing-library/react",
+"plugin:jest-dom/recommended"
