@@ -41,3 +41,18 @@ configure AndroidManifest.xml file like this.
 Live reload on mobile =>
 ionic cap run ios -l --external
 ionic cap run android -l --external
+
+
+
+In case of intellij Toolkit Android studio
+CAPACITOR_ANDROID_STUDIO_PATH="/Users/thewavelet/Library/Application Support/JetBrains/Toolbox/apps/AndroidStudio/ch-0/202.7486908/Android Studio.app" ionic cap open android
+
+
+
+Caused by: org.gradle.api.resources.MissingResourceException: Could not read script '/Users/thewavelet/project3/app-unido-universal/android/capacitor-cordova-android-plugins/cordova.variables.gradle' as it does not exist.
+=> ionic capacitor update
+
+
+package-lock.json is always changed when using ~1.2.0 or ^1.2.0 like this.
+npm ci << This command only install from package-lock.json only. (https://stackoverflow.com/questions/45022048/why-does-npm-install-rewrite-package-lock-json)
+
