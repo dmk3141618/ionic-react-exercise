@@ -11,6 +11,16 @@ import React, {ReactElement} from "react";
 import {IonInput} from '@ionic/react';
 import {Color, InputChangeEventDetail, TextFieldTypes} from '@ionic/core';
 
+// Use this like,
+// const [value, setValue] = useState<FilteredTextInputValueType>({
+//  value: "", minlength: 1
+// });
+// Be able to use minlength when disable confirm button.
+export type FilteredTextInputValueType = {
+  value: string | number | null;
+  minlength?: number;
+};
+
 // can not use "interface IProps extends JSX.IonInput {}" because there is more complex combination with HTML DOM.
 // IonInput properties:
 // accept, autocapitalize, autocorrect, autofocus, clearInput, clearOnEdit, color, debounce, disabled,
@@ -19,8 +29,8 @@ import {Color, InputChangeEventDetail, TextFieldTypes} from '@ionic/core';
 // IonInput pattern property is already exist but it only works when submitting.
 type IProps = {
   type?: TextFieldTypes;
-  value: string | number | null;
-  setValue: (value: string) => void;
+  value: FilteredTextInputValueType;
+  setValue: (filteredTextInputValue: FilteredTextInputValueType) => void;
   regExp?: RegExp;
   className?: string;
   inputmode?: 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search';
@@ -37,7 +47,7 @@ type IProps = {
   // If the value of the type attribute is text, email, search, password, tel, or url,
   // this attribute specifies the number of characters that the user can enter.
   maxlength?: number;
-  minlength?: number;
+  // minlength?: number;
   placeholder?: string;
   // The initial size of the control. This value is in pixels unless the value of the type attribute is
   // "text" or "password", in which case it is an integer number of characters. This attribute
@@ -62,22 +72,15 @@ function FilteredTextInput({...props}: IProps): ReactElement {
   if (regExp && !onIonChange) {
     onIonChangeFiltering = (event: CustomEvent<InputChangeEventDetail>) => {
       const newValue = event.detail.value as string;
-      const pastValue = value as string;
+      const pastValue = value.value as string;
       if(regExp.test(newValue)) {
-        setValue("");
-        setValue(newValue);
+        setValue({...value, value: newValue});
       } else {
-        if (!pastValue) {
-          setValue("-");
-          setValue("");
-        } else {
-          setValue("");
-          setValue(value as string);
-        }
+        setValue({...value, value: pastValue});
       }
     }
   }
-  return <IonInput {...props} debounce={50} value={value} onIonChange={onIonChangeFiltering ? onIonChangeFiltering : onIonChange} />;
+  return <IonInput {...props} debounce={50} value={value.value} onIonChange={onIonChangeFiltering ? onIonChangeFiltering : onIonChange} />;
 }
 
 export default React.memo(FilteredTextInput);
